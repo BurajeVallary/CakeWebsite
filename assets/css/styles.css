@@ -6,8 +6,8 @@
   
     /*========== Colors ==========*/
     /*Color mode HSL(hue, saturation, lightness)*/
-    --first-color: hsl(354, 100%, 96%);
-    --first-color-alt: hsl(354, 100%, 94%);
+    --first-color: hsl(354,100%,75%, 90%);
+    --first-color-alt: hsl(354,100%,75%, 90%);
     --title-color: hsl(354, 19%, 38%);
     --text-color: hsl(354, 51%, 29%);
     --text-color-light: hsl(354, 70%, 36%);
@@ -139,7 +139,7 @@ img {
 
 /*========== Variables Dark theme ==========*/
 body.dark-theme {
-  --first-color: hsla(354, 100%, 96%, 88%);
+  --first-color: hsla(354,100%,75%, 90%);
   --first-color-alt: hsl(354, 96%, 91%);
   --title-color: hsl(354, 27%, 98%);
   --text-color: hsl(355, 27%, 95%);
