@@ -108,29 +108,7 @@
 					typeof x.nodeName === 'string'
 	}
 
-	/*! @license is-dom-node-list v1.2.1
 
-		Copyright 2018 Fisssion LLC.
-
-		Permission is hereby granted, free of charge, to any person obtaining a copy
-		of this software and associated documentation files (the "Software"), to deal
-		in the Software without restriction, including without limitation the rights
-		to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-		copies of the Software, and to permit persons to whom the Software is
-		furnished to do so, subject to the following conditions:
-
-		The above copyright notice and this permission notice shall be included in all
-		copies or substantial portions of the Software.
-
-		THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-		IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-		FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-		AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-		LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-		OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-		SOFTWARE.
-
-	*/
 
 	function isDomNodeList(x) {
 		var prototypeToString = Object.prototype.toString.call(x);
@@ -145,29 +123,7 @@
 					(x.length === 0 || isDomNode(x[0]))
 	}
 
-	/*! @license Tealight v0.3.6
 
-		Copyright 2018 Fisssion LLC.
-
-		Permission is hereby granted, free of charge, to any person obtaining a copy
-		of this software and associated documentation files (the "Software"), to deal
-		in the Software without restriction, including without limitation the rights
-		to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-		copies of the Software, and to permit persons to whom the Software is
-		furnished to do so, subject to the following conditions:
-
-		The above copyright notice and this permission notice shall be included in all
-		copies or substantial portions of the Software.
-
-		THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-		IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-		FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-		AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-		LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-		OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-		SOFTWARE.
-
-	*/
 
 	function tealight(target, context) {
 	  if ( context === void 0 ) { context = document; }
@@ -240,9 +196,7 @@
 		} catch (e) {
 			throw e
 		}
-		/**
-		 * Destroy stale elements.
-		 */
+		
 		each(this.store.elements, function (element) {
 			if (elementIds.active.indexOf(element.id) === -1) {
 				elementIds.stale.push(element.id);
@@ -251,9 +205,6 @@
 
 		each(elementIds.stale, function (staleId) { return delete this$1.store.elements[staleId]; });
 
-		/**
-		 * Take stock of active container and sequence IDs.
-		 */
 		each(this.store.elements, function (element) {
 			if (containerIds.active.indexOf(element.containerId) === -1) {
 				containerIds.active.push(element.containerId);
@@ -281,44 +232,12 @@
 			delete this$1.store.containers[staleId];
 		});
 
-		/**
-		 * Destroy stale sequences.
-		 */
+		
 		each(this.store.sequences, function (sequence) {
 			if (sequenceIds.active.indexOf(sequence.id) === -1) {
 				sequenceIds.stale.push(sequence.id);
 			}
-		});
-
-		each(sequenceIds.stale, function (staleId) { return delete this$1.store.sequences[staleId]; });
-	}
-
-	/*! @license Rematrix v0.3.0
-
-		Copyright 2018 Julian Lloyd.
-
-		Permission is hereby granted, free of charge, to any person obtaining a copy
-		of this software and associated documentation files (the "Software"), to deal
-		in the Software without restriction, including without limitation the rights
-		to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-		copies of the Software, and to permit persons to whom the Software is
-		furnished to do so, subject to the following conditions:
-
-		The above copyright notice and this permission notice shall be included in
-		all copies or substantial portions of the Software.
-
-		THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-		IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-		FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-		AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-		LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-		OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-		THE SOFTWARE.
-	*/
-	/**
-	 * @module Rematrix
-	 */
-
+	
 	/**
 	 * Transformation matrices in the browser come in two flavors:
 	 *
@@ -895,17 +814,9 @@
 			target.addEventListener('resize', this$1.delegate);
 		});
 
-		/**
-		 * Manually invoke delegate once to capture
-		 * element and container dimensions, container
-		 * scroll position, and trigger any valid reveals
-		 */
 		this.delegate();
 
-		/**
-		 * Wipe any existing `setTimeout` now
-		 * that initialization has completed.
-		 */
+		
 		this.initTimeout = null;
 	}
 
@@ -1012,14 +923,6 @@
 
 			seq.models = { visible: visible, revealed: revealed };
 
-			/**
-			 * If the sequence has no revealed members,
-			 * then we reveal the first visible element
-			 * within that sequence.
-			 *
-			 * The sequence then cues a recursive call
-			 * in both directions.
-			 */
 			if (!revealed.body.length) {
 				var nextId = seq.members[visible.body[0]];
 				var nextElement = this.store.elements[nextId];
@@ -1031,11 +934,6 @@
 				}
 			}
 
-			/**
-			 * If our element isn’t resetting, we check the
-			 * element sequence index against the head, and
-			 * then the foot of the sequence.
-			 */
 			if (
 				!seq.blocked.head &&
 				i === [].concat( revealed.head ).pop() &&
@@ -1203,11 +1101,7 @@
 				return elementBuffer
 			}, []);
 
-			/**
-			 * Modifying the DOM via setAttribute needs to be handled
-			 * separately from reading computed styles in the map above
-			 * for the browser to batch DOM changes (limiting reflows)
-			 */
+		
 			each(elements, function (element) {
 				this$1.store.elements[element.id] = element;
 				element.node.setAttribute('data-sr-id', element.id);
@@ -1216,10 +1110,7 @@
 			return logger.call(this, 'Reveal failed.', e.message)
 		}
 
-		/**
-		 * Now that element set-up is complete...
-		 * Let’s commit any container and sequence data we have to the store.
-		 */
+		
 		each(containerBuffer, function (container) {
 			this$1.store.containers[container.id] = {
 				id: container.id,
@@ -1230,17 +1121,10 @@
 			this.store.sequences[sequence$$1.id] = sequence$$1;
 		}
 
-		/**
-		 * If reveal wasn't invoked by sync, we want to
-		 * make sure to add this call to the history.
-		 */
 		if (syncing !== true) {
 			this.store.history.push({ target: target, options: options });
 
-			/**
-			 * Push initialization to the event queue, giving
-			 * multiple reveal calls time to be interpreted.
-			 */
+			
 			if (this.initTimeout) {
 				window.clearTimeout(this.initTimeout);
 			}
@@ -1263,10 +1147,7 @@
 		return id
 	}
 
-	/**
-	 * Re-runs the reveal method for each record stored in history,
-	 * for capturing new content asynchronously loaded into the DOM.
-	 */
+	
 	function sync() {
 		var this$1 = this;
 
@@ -1280,29 +1161,7 @@
 	var polyfill = function (x) { return (x > 0) - (x < 0) || +x; };
 	var mathSign = Math.sign || polyfill;
 
-	/*! @license miniraf v1.0.1
-
-		Copyright 2018 Fisssion LLC.
-
-		Permission is hereby granted, free of charge, to any person obtaining a copy
-		of this software and associated documentation files (the "Software"), to deal
-		in the Software without restriction, including without limitation the rights
-		to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-		copies of the Software, and to permit persons to whom the Software is
-		furnished to do so, subject to the following conditions:
-
-		The above copyright notice and this permission notice shall be included in all
-		copies or substantial portions of the Software.
-
-		THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-		IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-		FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-		AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-		LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-		OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-		SOFTWARE.
-
-	*/
+	
 	var polyfill$1 = (function () {
 		var clock = Date.now();
 
@@ -1323,10 +1182,7 @@
 		polyfill$1;
 
 	function getGeometry(target, isContainer) {
-		/**
-		 * We want to ignore padding and scrollbars for container elements.
-		 * More information here: https://goo.gl/vOZpbz
-		 */
+		
 		var height = isContainer ? target.node.clientHeight : target.node.offsetHeight;
 		var width = isContainer ? target.node.clientWidth : target.node.offsetWidth;
 
@@ -1394,7 +1250,10 @@
 
 		return (
 			(elementBounds.top < containerBounds.bottom &&
-				elementBounds.right > containerBounds.left &&
+				elementBounds.right > contain/**
+				* We want to ignore padding and scrollbars for container elements.
+				* More information here: https://goo.gl/vOZpbz
+				*/erBounds.left &&
 				elementBounds.bottom > containerBounds.top &&
 				elementBounds.left < containerBounds.right) ||
 			element.styles.position === 'fixed'
@@ -1426,12 +1285,7 @@
 				container.scroll = scroll;
 			});
 
-			/**
-			 * Due to how the sequencer is implemented, it’s
-			 * important that we update the state of all
-			 * elements, before any animation logic is
-			 * evaluated (in the second loop below).
-			 */
+			
 			each(elements, function (element) {
 				if (stale || element.geometry === undefined) {
 					element.geometry = getGeometry.call(this$1, element);
